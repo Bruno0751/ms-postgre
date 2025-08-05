@@ -49,14 +49,18 @@ public interface CspApi {
     @DeleteMapping(value = "{id}")
     ResponseEntity<Object> delete(@PathVariable(value = "id") Long id);
 
-    @ApiOperation(value = "Retorna a quantidade total de registros de pssoa", notes = "Recupera o número total de registros de CSP existentes no sistema.")
+    @ApiOperation(value = "Retorna a quantidade total de registros de pessoa", notes = "Recupera o número total de registros de pessoa existentes no sistema.")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/count")
     long count();
 
-    @ApiOperation(value = "Retorna a quantidade total de registros de pssoa", notes = "Recupera o número total de registros de CSP existentes no sistema.")
+    @ApiOperation(value = "Retorna a quantidade de registros desejada", notes = "Recupera o número desejado de registros existentes no sistema.")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/limit/{limit}", produces = {MediaType.APPLICATION_JSON_VALUE})
     List<CspQueryLimitDto> findLimit(@PathVariable(value = "limit") Integer limit);
+
+    @GetMapping(value = "/teste")
+    @ResponseStatus(HttpStatus.OK)
+    void teste();
 
 }

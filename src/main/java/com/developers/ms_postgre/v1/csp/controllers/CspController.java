@@ -5,10 +5,8 @@ import com.developers.ms_postgre.v1.csp.dto.CspDto;
 import com.developers.ms_postgre.v1.csp.dto.CspQueryLimitDto;
 import com.developers.ms_postgre.v1.csp.model.CspModel;
 import com.developers.ms_postgre.v1.csp.repository.CspRepository;
-import com.developers.ms_postgre.v1.csp.repository.CspRepositoryQuery;
+import com.developers.ms_postgre.v1.csp.service.CspService;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -25,7 +23,7 @@ public class CspController implements CspApi {
     @Autowired
     CspRepository cspRepository;
     @Autowired
-    CspRepositoryQuery cspRepositoryQuery;
+    CspService cspService;
 
 //    @Transactional
     @Override
@@ -91,11 +89,16 @@ public class CspController implements CspApi {
 
     @Override
     public long count() {
-        return cspRepository.count();
+        return cspService.count();
     }
 
     @Override
     public List<CspQueryLimitDto> findLimit(Integer limit) {
-        return cspRepositoryQuery.findLimit(limit);
+        return cspService.findLimit(limit);
+    }
+
+    @Override
+    public void teste() {
+        cspService.teste();
     }
 }
